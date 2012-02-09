@@ -11,4 +11,9 @@ class Repository
   field :key_added, :type => Boolean, :default => false
 
   validates_presence_of :uri, :name
+  has_many :scripts
+
+  def fetch!
+    BuildTask.create!(:repository => self)
+  end
 end

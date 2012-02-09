@@ -3,3 +3,7 @@
 require "#{File.dirname(__FILE__)}/../lib/gitci"
 
 
+BuildTask.order_by(:created_at.asc, :performed => false).each do |task|
+  task.perform!
+end
+

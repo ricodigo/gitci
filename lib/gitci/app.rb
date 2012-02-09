@@ -49,6 +49,12 @@ module Gitci
       @repository = Repository.new(params[:repository])
 
       @repository.save!
+      @repository.build!
+
+      if params[:script]
+        @repository.scripts.create(:command => params[:script])
+      end
+
       redirect "/repositories/#{@repository.id}"
     end
   end
