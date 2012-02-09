@@ -1,0 +1,16 @@
+%form(action="/repositories" method="post" name="edit-repository")
+  .field
+    %label
+      Name
+    %input(type='text' name='repository[name]')
+  .field
+    %label
+      URI
+    %input(type='text' name='repository[uri]')
+  .field
+    %label
+      Ssh Key
+    %textarea(name='repository[ssh_key]')
+
+  .field.buttons
+    %input(type='submit' value='Add')

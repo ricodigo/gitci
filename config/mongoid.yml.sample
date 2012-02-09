@@ -1,0 +1,25 @@
+
+
+development:
+  max_retries_on_connection_failure: 5
+  raise_not_found_error: false
+  preload_models: true
+  database: gitci-development
+  persist_in_safe_mode: true
+  identity_map_enabled: false
+
+test:
+  max_retries_on_connection_failure: 5
+  raise_not_found_error: false
+  preload_models: true
+  database: gitci-test
+  identity_map_enabled: false
+
+production:
+  max_retries_on_connection_failure: 5
+  raise_not_found_error: false
+  preload_models: true
+  database: gitci-production
+  autocreate_indexes: false
+  persist_in_safe_mode: false
+  identity_map_enabled: false

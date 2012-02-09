@@ -1,14 +1,15 @@
 source "http://rubygems.org"
 
 gem "sinatra"
+gem "sinatra-contrib", :require => false
 gem "rack-protection", "1.2.0"
 gem "grit"
 gem "mongoid", "~> 2.4.3"
-gem "mongo", "~> 1.5.2"
 gem "bson", "~> 1.5.2"
-gem "bson_ext", "~> 1.5.2"
+gem "mongo", "~> 1.5.2"
 gem "bundler", "~> 1.0.0"
 gem "unicorn", :require => false
+gem "haml"
 
 
 group :development do
