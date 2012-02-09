@@ -28,6 +28,7 @@ pkg
 #
 
 config/mongoid.yml
+config/gitci.yml
 
 # For MacOS:
 #

@@ -3,7 +3,7 @@ module Gitci
     @config ||= begin
       ENV['RACK_ENV'] ||= 'development'
 
-      Mongoid.load!(File.dirname(__FILE__)+"/../config/mongoid.yml")
+      Mongoid.load!(File.dirname(__FILE__)+"/../../config/mongoid.yml")
 
       data = if File.exist?('/etc/gitci.yml')
         YAML.load_file('/etc/gitci.yml')

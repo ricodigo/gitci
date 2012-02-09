@@ -1,0 +1,16 @@
+development:
+  repositories_path: "/path/to/writable/dir"
+  enable_auth: true
+  username: admin
+  password: admin
+
+test:
+  repositories_path: "/path/to/writable/dir"
+  enable_auth: false
+
+production:
+  repositories_path: "/path/to/writable/dir"
+  enable_auth: true
+  username: admin
+  password: admin
+
