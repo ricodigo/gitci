@@ -4,6 +4,7 @@ require 'bundler/setup'
 
 Bundler.require
 
+require 'open3'
 require 'sinatra/namespace'
 
 require 'gitci/config'

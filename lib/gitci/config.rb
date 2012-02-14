@@ -11,7 +11,10 @@ module Gitci
         YAML.load_file(File.expand_path("../../../config/gitci.yml", __FILE__))
       end
 
-      OpenStruct.new(data[ENV['RACK_ENV']])
+      config = OpenStruct.new(data[ENV['RACK_ENV']])
+      FileUtils.mkpath(config.repositories_path)
+
+      config
     end
   end
 end

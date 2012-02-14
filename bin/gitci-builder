@@ -1,9 +1,17 @@
 #!/usr/bin/env ruby
 
-require "#{File.dirname(__FILE__)}/../lib/gitci"
+require File.expand_path("../../lib/gitci", __FILE__)
 
 
-BuildTask.order_by(:created_at.asc, :performed => false).each do |task|
-  task.perform!
+BuildTask.order_by(:created_at.asc).where(:performed => false).each do |task|
+  puts ">> Running `#{task.command}`..."
+
+  begin
+    task.perform!
+  rescue => e
+    puts "Error running task #{task.id}:"
+    puts e.message
+    puts e.backtrace.join("\t\n")
+  end
 end
 
