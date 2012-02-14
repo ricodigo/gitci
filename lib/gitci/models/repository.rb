@@ -15,6 +15,7 @@ class Repository
 
   validates_presence_of :uri, :name
   has_many :scripts
+  has_many :build_tasks
 
   def normalized_name
     name.parameterize("-")

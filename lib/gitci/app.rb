@@ -66,7 +66,7 @@ module Gitci
       redirect "/repositories/#{@repository.id}"
     end
 
-    get "/repositories/:repository_id/scripts/:id" do
+    get "/repositories/:repository_id/scripts/:id/delete" do
       @repository = Repository.find(params[:repository_id])
 
       @repository.scripts.find(params[:id]).destroy

@@ -3,11 +3,4 @@
 
 =haml :"repositories/_form.html"
 
-%h1
-  Repositories
-
-%ul
-  -@repositories.each do |repo|
-    %li
-      %a(href="/repositories/#{repo.id}")
-        =repo.name
+=haml :"repositories/index.html"

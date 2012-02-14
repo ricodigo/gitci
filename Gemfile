@@ -10,6 +10,7 @@ gem "mongo", "~> 1.5.2"
 gem "bundler", "~> 1.0.0"
 gem "unicorn", :require => false
 gem "haml"
+gem "open4", "~> 1.3.0"
 
 
 group :development do

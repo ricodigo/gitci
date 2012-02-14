@@ -10,9 +10,16 @@ class BuildTask
   field :stderr, :type => String
 
   field :git_ref, :type => String
+  field :runtime_error, :type => String
+  field :runtime_backtrace, :type => Array
+  field :finished_at, :type => Time
+
+  field :exit_code, :type => Integer, :default => -1
 
   belongs_to :repository
   belongs_to :script
+
+  before_create :check_command
 
   validates_presence_of :repository
 
@@ -21,14 +28,21 @@ class BuildTask
   end
 
   def perform!
-    if has_command?
-      fetch_repository
-      run_script
-    else
-      fetch_repository
+    begin
+      if has_command?
+        fetch_repository
+        run_script
+      else
+        fetch_repository
+      end
+    rescue => e
+      self.runtime_error = e.message
+      self.runtime_backtrace = e.backtrace
+      self.failed = true
     end
 
-#     self.set(:performed, true)
+    self.performed = true
+    self.save
   end
 
   protected
@@ -38,10 +52,14 @@ class BuildTask
     end
 
     in_repo do
-      if File.exist?("Gemfile")
-        Open3.popen3("bundle install --deployment") do |stdin, stdout, stderr|
-          puts ">>>>>>> #{stderr.read}"
-          puts ">>>>>>> #{stdout.read}"
+      reset_head
+
+      if File.exist?("mongoid_ext.gemspec")
+        ENV['BUNDLE_GEMFILE'] = nil
+        ENV['BUNDLE_BIN_PATH'] = nil
+        ENV['RUBYOPT'] = nil
+        ENV['rvm_dump_environment_flag'] = nil
+        Open4::popen4("bundle install --deployment") do |pid, stdin, stdout, stderr|
           repository.bundle_output = stdout.read
           repository.has_gemfile = true
           repository.save!
@@ -52,24 +70,35 @@ class BuildTask
 
   def run_script
     in_repo do
-      reset_head
-      Open3.popen3(self.command) do |pid, stdin, stdout, stderr|
+      status = Open4::popen4(self.command) do |pid, stdin, stdout, stderr|
         self.stdout = stdout.read
         self.stderr = stderr.read
-
-        self.save!
+        self.finished_at = Time.now
       end
+
+      self.exit_code = status.to_i
+      if self.exit_code != 0
+        self.failed = true
+      end
+
+      self.save!
     end
   end
 
   def in_repo(&block)
     Dir.chdir(self.repository.path) do
-#       reset_head(self.git_ref||"origin/master")
       block.call
     end
   end
 
-  def reset_head(ref)
+  def reset_head
+    ref = self.git_ref.present? ? self.git_ref : "origin/master"
     system("git fetch origin; git reset --hard '#{ref}'")
+  end
+
+  def check_command
+    if self.command.nil? && self.script_id.present?
+      self.command = self.script.command
+    end
   end
 end

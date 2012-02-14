@@ -1,0 +1,15 @@
+%b
+  Command:
+=task.command
+%br
+%b
+  Status:
+=task.failed ? "FAILED" : "OK"
+
+== Finished on #{(task.finished_at||task.updated_at)}
+
+%br
+
+%pre{:style => "background: #bbb"}
+  =task.stdout
+%br
