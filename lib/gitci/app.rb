@@ -49,11 +49,27 @@ module Gitci
       @repository = Repository.new(params[:repository])
 
       @repository.save!
-      @repository.build!
+      @repository.fetch!
 
       if params[:script]
         @repository.scripts.create(:command => params[:script])
       end
+
+      redirect "/repositories/#{@repository.id}"
+    end
+
+    post '/repositories/:repository_id/scripts' do
+      @repository = Repository.find(params[:repository_id])
+
+      @repository.scripts.create(params[:script])
+
+      redirect "/repositories/#{@repository.id}"
+    end
+
+    get "/repositories/:repository_id/scripts/:id" do
+      @repository = Repository.find(params[:repository_id])
+
+      @repository.scripts.find(params[:id]).destroy
 
       redirect "/repositories/#{@repository.id}"
     end

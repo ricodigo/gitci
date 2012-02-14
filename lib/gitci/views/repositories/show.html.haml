@@ -5,3 +5,18 @@ Git Repository
 %a(href="#{@repository.uri}")
   =@repository.uri
 
+%form(action="/repositories/#{@repository.id}/scripts" method="post" name="create-script-form")
+  .field
+    %label
+      Command
+    %textarea(name='script[command]')
+  .field.buttons
+    %input(type='submit' value='Add script')
+
+%ul
+  -@repository.scripts.each do |script|
+    %li
+      =script.command
+      %a(href="/repositories/#{@repository.id}/scripts/#{script.id}/delete")
+        delete
+
