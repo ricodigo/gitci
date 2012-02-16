@@ -17,5 +17,8 @@
 
 -color = task.failed ? '#FF7E7E' : '#bbb'
 %pre{:style => "background: #{color}"}
-  =task.stdout
+  -if !task.stdout.blank?
+    =task.stdout
+  -else
+    =task.stderr
 %br
