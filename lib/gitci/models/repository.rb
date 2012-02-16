@@ -58,6 +58,10 @@ class Repository
       if entry.title =~ /^Committed: (\S+)/
         commit_id = $1
 
+        if BuildTask.where(:git_ref => commit_id).first
+          next
+        end
+
         self.scripts.each do |script|
           BuildTask.create!(:repository => self, :script => script, :git_ref => commit_id)
         end
