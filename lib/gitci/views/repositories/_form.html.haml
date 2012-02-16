@@ -9,8 +9,13 @@
     %input(type='text' name='repository[uri]')
   .field
     %label
-      Ssh Key
-    %textarea(name='repository[ssh_key]')
+      Feed URL (rss, atom)
+    %input(type='text' name='repository[feed_url]')
+  .field
+    %label
+      Gitci Ssh Key
+    %pre{:style => "width: 800px; height: 40px; overflow: scroll"}
+      &=File.read("#{Dir.home}/.ssh/id_rsa.pub")
 
   .field
     %label
