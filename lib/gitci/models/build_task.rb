@@ -13,6 +13,7 @@ class BuildTask
   field :runtime_error, :type => String
   field :runtime_backtrace, :type => Array
   field :finished_at, :type => Time
+  field :commit_id, :type => String
 
   field :exit_code, :type => Integer, :default => -1
 
@@ -74,6 +75,7 @@ class BuildTask
         self.stdout = stdout.read
         self.stderr = stderr.read
         self.finished_at = Time.now
+        self.commit_id = `git log --oneline -1`
       end
 
       self.exit_code = status.to_i
