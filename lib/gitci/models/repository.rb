@@ -35,6 +35,8 @@ class Repository
 
     feed = Feedzirra::Feed.fetch_and_parse(self.feed_url)
 
+    return false if !feed.respond_to?(:entries)
+
     entries = feed.entries
     if entries[0].updated && entries[0].updated == entries[1].updated
       $stderr.puts "BUGGY FEED: #{self.feed_url}"
