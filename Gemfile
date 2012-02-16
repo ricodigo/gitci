@@ -12,6 +12,7 @@ gem "unicorn", :require => false
 gem "haml"
 gem "open4", "~> 1.3.0"
 gem "whenever"
+gem "feedzirra", :git => "git://github.com/pauldix/feedzirra.git"
 
 
 group :development do

@@ -12,7 +12,7 @@ working_directory rack_root
 
 timeout 30
 
-worker_processes 4
+worker_processes 1
 
 # Listen on a Unix data socket
 listen socket_file, :backlog => 1024
