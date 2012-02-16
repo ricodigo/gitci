@@ -49,7 +49,11 @@ class Repository
         next
       end
 
-      next if self.last_feed_at && entry.published.to_i < self.last_feed_at.to_i
+      if self.last_feed_at && entry.published.to_i < self.last_feed_at.to_i
+        next
+      elsif entry.published.to_i < self.created_at.to_i
+        next
+      end
 
       if entry.title =~ /^Committed: (\S+)/
         commit_id = $1
