@@ -2,12 +2,22 @@
 
 require File.expand_path("../../lib/gitci", __FILE__)
 
-Repository.all.each do |repo|
-  repo.parse_feed
-end
+begin
+  if !File.exist?("/tmp/gitci-builder.lock")
+    FileUtils.touch("/tmp/gitci-builder.lock")
 
-BuildTask.order_by(:created_at.asc).where(:performed => false).each do |task|
-  puts ">> Running `#{task.command}`..."
-  task.perform!
+    Repository.all.each do |repo|
+      repo.parse_feed
+    end
+
+    BuildTask.order_by(:created_at.asc).where(:performed => false).each do |task|
+      puts ">> Running `#{task.command}`..."
+      task.perform!
+    end
+
+    File.unlink("/tmp/gitci-builder.lock")
+  end
+rescue Exception
+  File.unlink("/tmp/gitci-builder.lock")
 end
 
