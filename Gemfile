@@ -11,6 +11,7 @@ gem "bundler", "~> 1.0.0"
 gem "unicorn", :require => false
 gem "haml"
 gem "open4", "~> 1.3.0"
+gem "whenever"
 
 
 group :development do
