@@ -1,0 +1,38 @@
+app_name            = 'gitci'
+rack_root           = File.expand_path('../../', __FILE__)
+rack_env            = 'production'
+log_file            = "#{rack_root}/log/bluepill.log"
+unicorn_bin         = 'bundle exec unicorn'
+unicorn_pid         = "#{rack_root}/tmp/unicorn.pid"
+unicorn_config      = "#{rack_root}/config/unicorn.rb"
+unicorn_start_cmd   = "#{unicorn_bin} -c #{rack_root}/config/unicorn.rb -E #{rack_env} -D"
+unicorn_stop_cmd    = 'kill -QUIT {{PID}}'
+unicorn_restart_cmd = 'kill -USR2 {{PID}}'
+
+FileUtils.mkdir_p("#{rack_root}/tmp")
+FileUtils.mkdir_p("#{rack_root}/log")
+
+puts ">> Starting #{app_name} bluepill with RACK_ROOT=#{rack_root} and RACK_ENV=#{rack_env}"
+
+Bluepill.application(app_name, :log_file => log_file, :base_dir => rack_root) do |app|
+  app.process("unicorn-#{app_name}") do |process|
+    process.base_dir = rack_root
+    process.pid_file = unicorn_pid
+    process.working_dir = rack_root
+
+    process.start_command = unicorn_start_cmd
+    process.stop_command = unicorn_stop_cmd
+    process.restart_command = unicorn_restart_cmd
+
+    process.start_grace_time = 170.seconds
+    process.stop_grace_time = 170.seconds
+    process.restart_grace_time = 170.seconds
+
+    process.monitor_children do |child_process|
+      child_process.stop_command = unicorn_stop_cmd
+
+      child_process.checks :mem_usage, :every => 15.seconds, :below => 200.megabytes, :times => [3,4], :fires => :stop
+      child_process.checks :cpu_usage, :every => 15.seconds, :below => 90, :times => [3,4], :fires => :stop
+    end
+  end
+end
