@@ -58,8 +58,6 @@ class Repository
           BuildTask.create!(:repository => self, :script => script, :git_ref => commit_id)
         end
       end
-
-      self.posts << post
     end
   end
 
