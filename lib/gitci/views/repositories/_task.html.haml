@@ -14,7 +14,8 @@
 -else
   =task.failed ? "FAILED" : "OK"
 
-== Finished on #{(task.finished_at||task.updated_at)}
+-if task.performed
+  == Finished on #{(task.finished_at||task.updated_at)}
 
 %br
 
