@@ -77,7 +77,9 @@ class BuildTask
       self.exit_code = status.to_i
       if self.exit_code != 0
         self.failed = true
-      else
+      end
+
+      begin
         old_name = File.expand_path("./coverage")
         new_name = File.expand_path("../../../../public/#{self.repository.normalized_name}-coverage")
         if File.exist?("coverage") && !File.exist?(new_name)
@@ -87,6 +89,9 @@ class BuildTask
 
           self.repository.save(:validate => false)
         end
+      rescue => e
+        puts e.message
+        puts e.backtrace.join("\n\t")
       end
 
       self.save!
