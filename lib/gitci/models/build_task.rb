@@ -12,6 +12,8 @@ class BuildTask
   field :git_ref, :type => String
   field :runtime_error, :type => String
   field :runtime_backtrace, :type => Array
+
+  field :running, :type => Boolean, :default => false
   field :finished_at, :type => Time
   field :commit_id, :type => String
 
@@ -30,6 +32,9 @@ class BuildTask
 
   def perform!
     begin
+      self.running = true
+      self.save(:validate => false)
+
       if has_command?
         fetch_repository
         run_script
@@ -40,6 +45,8 @@ class BuildTask
       self.runtime_error = e.message
       self.runtime_backtrace = e.backtrace
       self.failed = true
+    ensure
+      self.running = false
     end
 
     self.performed = true

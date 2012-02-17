@@ -9,7 +9,10 @@
 
 %b
   Status:
-=task.failed ? "FAILED" : "OK"
+-if task.running
+  ="Running"
+-else
+  =task.failed ? "FAILED" : "OK"
 
 == Finished on #{(task.finished_at||task.updated_at)}
 
