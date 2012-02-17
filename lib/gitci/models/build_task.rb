@@ -121,6 +121,9 @@ class BuildTask
       end
     end
 
+    ENV.delete('BUNDLE_GEMFILE')
+    ENV.delete('GEM_HOME')
+
     block.call
 
     old_vals.each do |k, v|
