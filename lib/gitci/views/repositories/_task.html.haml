@@ -19,6 +19,8 @@
 %pre{:style => "background: #{color}"}
   -if !task.stdout.blank?
     =task.stdout
-  -else
+
+%pre{:style => "background: #{color}"}
+  -if task.failed && !task.stderr.blank?
     =task.stderr
 %br
