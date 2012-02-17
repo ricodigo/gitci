@@ -94,13 +94,17 @@ class BuildTask
   end
 
   def in_repo(&block)
-    ENV['BUNDLE_GEMFILE'] = nil
-    ENV['BUNDLE_BIN_PATH'] = nil
-    ENV['RUBYOPT'] = nil
-    ENV['rvm_dump_environment_flag'] = nil
+    envvars = %w[BUNDLE_GEMFILE BUNDLE_BIN_PATH RUBYOPT rvm_dump_environment_flag GEM_HOME]
+    old_vals = envvars.map {|ev| v=ENV[ev]; ENV[ev]=nil; v }
     Dir.chdir(self.repository.path) do
+      ENV['PWD'] = Dir.getwd
       block.call
     end
+
+    envvars.each_with_index do |ev, index|
+      ENV[ev] = old_vals[index]
+    end
+    ENV['PWD'] = Dir.getwd
   end
 
   def reset_head
