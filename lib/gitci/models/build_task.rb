@@ -56,10 +56,6 @@ class BuildTask
       reset_head
 
       if File.exist?("mongoid_ext.gemspec")
-        ENV['BUNDLE_GEMFILE'] = nil
-        ENV['BUNDLE_BIN_PATH'] = nil
-        ENV['RUBYOPT'] = nil
-        ENV['rvm_dump_environment_flag'] = nil
         Open4::popen4("bundle install --deployment") do |pid, stdin, stdout, stderr|
           repository.bundle_output = stdout.read
           repository.has_gemfile = true
@@ -81,6 +77,16 @@ class BuildTask
       self.exit_code = status.to_i
       if self.exit_code != 0
         self.failed = true
+      else
+        old_name = File.expand_path("./coverage")
+        new_name = File.expand_path("../../../../public/#{self.repository.normalized_name}-coverage")
+        if File.exist?("coverage") && !File.exist?(new_name)
+          self.repository.has_coverage = true
+          self.repository.coverage_path = "/#{self.repository.normalized_name}-coverage/index.html"
+          File.symlink(old_name, new_name)
+
+          self.repository.save(:validate => false)
+        end
       end
 
       self.save!
@@ -88,6 +94,10 @@ class BuildTask
   end
 
   def in_repo(&block)
+    ENV['BUNDLE_GEMFILE'] = nil
+    ENV['BUNDLE_BIN_PATH'] = nil
+    ENV['RUBYOPT'] = nil
+    ENV['rvm_dump_environment_flag'] = nil
     Dir.chdir(self.repository.path) do
       block.call
     end

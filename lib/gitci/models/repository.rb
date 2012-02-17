@@ -14,6 +14,9 @@ class Repository
   field :bundle_output, :type => String
   field :has_gemfile, :type => Boolean, :default => false
 
+  field :has_coverage, :type => Boolean, :default => false
+  field :coverage_path, :type => String
+
   validates_presence_of :uri, :name
   has_many :scripts
   has_many :build_tasks

@@ -9,6 +9,10 @@ Git Repository
   %pre{:style => "background: #bbb"}
     =@repository.bundle_output
 
+-if @repository.has_coverage
+  %a(href="#{@repository.coverage_path}")
+    coverage
+
 %form(action="/repositories/#{@repository.id}/scripts" method="post" name="create-script-form")
   .field
     %label
