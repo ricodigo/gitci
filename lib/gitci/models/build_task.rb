@@ -88,7 +88,7 @@ class BuildTask
 
       begin
         old_name = File.expand_path("./coverage")
-        new_name = File.expand_path("../../../../public/#{self.repository.normalized_name}-coverage")
+        new_name = File.expand_path("../../../../public/#{self.repository.normalized_name}-coverage", __FILE__)
         if File.exist?("coverage") && !File.exist?(new_name)
           self.repository.has_coverage = true
           self.repository.coverage_path = "/#{self.repository.normalized_name}-coverage/index.html"
