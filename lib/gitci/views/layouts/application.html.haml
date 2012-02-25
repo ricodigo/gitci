@@ -5,15 +5,14 @@
       =@title||"Gitci"
     %script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
     %script(src="/javascripts/application.js")
-    %script(src="/javascripts/bootstrap/bootstrap-dropdown.js")
-    %script(src="/javascripts/bootstrap/bootstrap-tooltips.js")
-    %script(src="/javascripts/bootstrap/bootstrap-botton.js")
-    %script(src="/javascripts/bootstrap/bootstrap-collapse.js")
-    %script(src="/javascripts/bootstrap/bootstrap-modal.js")
+    %script(src="/javascripts/bootstrap-dropdown.js")
+    %script(src="/javascripts/bootstrap-tooltip.js")
+    %script(src="/javascripts/bootstrap-button.js")
+    %script(src="/javascripts/bootstrap-collapse.js")
+    %script(src="/javascripts/bootstrap-modal.js")
+    %script(src="/javascripts/bootstrap-tab.js")
     %link(href="/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css")
     %link(href="/stylesheets/bootstrap-responsive.min.css" media="screen" rel="stylesheet" type="text/css")
-    %link(href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css")
-
 
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
@@ -22,9 +21,9 @@
       .navbar-inner
         .container-fluid
           %a(class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse")
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
 
           %a(class="brand" href="/")
             GitCI
@@ -35,12 +34,22 @@
                 %a(href="/")
                   Home
               %li
-                %a.add_repository(href="/repositories/new")
+                %a(href="/repositories/new" data-target="#newRepository" data-toggle="modal")
                   Add Repository
 
               %li
                 %a(href="/")
                   Contact
+
+    #newRepository.modal.fade.hide{style: "display:none"}
+      .modal-header
+        %a.close(data-dismiss="modal")
+          ×
+        %h3
+          Add Repository
+
+      .modal-body
+        = haml :"repositories/_form.html", layout: false
 
     .container-fluid
       .row-fluid

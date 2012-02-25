@@ -1,2 +1,14 @@
+%ul(class="breadcrumb")
+  %li
+    %a(href="/")
+      Home
+    %span(class="divider")
+      \/
+  %li(class="active")
+    %a(href="/repositories/new")
+      New
+
+%h1
+  New respository
 
 = haml :"repositories/_form.html", layout: false
