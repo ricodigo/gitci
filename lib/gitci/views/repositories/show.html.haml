@@ -1,3 +1,13 @@
+%ul(class="breadcrumb")
+  %li
+    %a(href="/")
+      Home
+    %span(class="divider")
+      \/
+  %li(class="active")
+    %a(href="/repositories/#{@repository.id}")
+      Repository
+      =@repository.name
 %h1
   =@repository.name
 
