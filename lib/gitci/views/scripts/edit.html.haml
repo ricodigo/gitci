@@ -20,4 +20,5 @@
 %form(action="/repositories/#{@repository.id}/scripts/#{@script.id}" method="post" name="edit-script-form" class="well")
   = haml :"scripts/_form.html", layout: false, locals: { script:  @script }
 
-  %input(type='submit' value='Update script' class="btn btn-primary")
+  .form-actions
+    %input(type='submit' value='Update script' class="btn btn-primary")
