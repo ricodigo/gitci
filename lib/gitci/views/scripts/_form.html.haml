@@ -1,0 +1,12 @@
+-script = locals[:script]
+
+%label
+  Name
+%input{type: 'text', name: 'script[name]', value: (script.nil? ? "" : script.name)}
+
+%label
+  Description
+%textarea(name='script[description]' rows="5" class="span4")
+%label
+  Command
+%textarea(name='script[command]' class="span4")

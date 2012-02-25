@@ -82,6 +82,19 @@ module Gitci
       redirect "/repositories/#{@repository.id}"
     end
 
+    get "/repositories/:repository_id/scripts/:id/edit" do
+      @repository = Repository.find(params[:repository_id])
+      @script = @repository.scripts.find(params[:id])
+      haml :'scripts/edit.html'
+    end
+
+    post "/repositories/:repository_id/scripts/:id" do
+      @repository = Repository.find(params[:repository_id])
+      @script = @repository.scripts.find(params[:id])
+      @script.update_attributes(params[:script])
+      redirect "/repositories/#{@repository.id}"
+    end
+
     get "/repositories/:repository_id/scripts/:id/run" do
       @repository = Repository.find(params[:repository_id])
       script = @repository.scripts.find(params[:id])

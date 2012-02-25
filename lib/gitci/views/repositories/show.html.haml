@@ -35,17 +35,7 @@
         Add new Script
 
     .modal-body
-
-      %label
-        Name
-      %input(type='text' name='script[name]')
-
-      %label
-        Description
-      %textarea(name='script[description]' rows="5" class="span4")
-      %label
-        Command
-      %textarea(name='script[command]' class="span4")
+      = haml :"scripts/_form.html", layout: false
     .modal-footer
       %input(type='submit' value='Add script' class="btn btn-primary")
       %a.btn(href="#")
@@ -57,24 +47,43 @@
 -count = 0
 -@repository.scripts.order(:created_at.desc).each do |script|
   -content_for :tab_nav do
-    %li{class: count == 0 ? "active" : ""}
+    %li
       %a(href="##{script.id}" data-toggle="tab")
         &= script.name || "unamed #{count}"
-        -count += 1
 
   -content_for :tab_content do
     .tab-pane{id: script.id}
       =h script.command
-      %button(href="/repositories/#{@repository.id}/scripts/#{script.id}/run" class="btn btn-success")
-        run
-      %button(href="/repositories/#{@repository.id}/scripts/#{script.id}/delete" class="btn btn-danger")
-        delete
-      %div(id="accordion_script" class="accordion")
-        -script.build_tasks.where(:running => true).order(:created_at.desc).limit(20).each do |task|
-          =haml :"repositories/_task.html", :locals => {:task => task}
+      %a(href="/repositories/#{@repository.id}/scripts/#{script.id}/run" class="btn btn-success")
+        Run
+      %a(href="/repositories/#{@repository.id}/scripts/#{script.id}/delete" class="btn btn-danger")
+        Delete
+      %a(href="/repositories/#{@repository.id}/scripts/#{script.id}/edit" class="btn")
+        Edit
+      -running_tasks = script.build_tasks.where(:running => true).order(:created_at.desc).limit(20)
+      -performed_tasks = script.build_tasks.where(:performed => true).order(:created_at.desc).limit(20)
+      -if running_tasks.blank? && performed_tasks.blank?
+        .alert.alert-info
+          This script have been performed
+      -else
+        -unless running_tasks.blank?
+          %div(class="accordion" id="tasks")
+            .accordion-group
+              -running_tasks.each do |task|
+                .accordion-heading
+                  %a(class="accordion-toggle" data-toggle="collapse" data-parent="#tasks" href="#task-#{task.id}")
+                    = task.created_at
 
-        -script.build_tasks.where(:performed => true).order(:created_at.desc).limit(20).each do |task|
-          =haml :"repositories/_task.html", :locals => {:task => task}
+                .accordion-body.collapse.in{id: "task-#{task.id}"}
+                  = haml :"repositories/_task.html", :locals => {:task => task}
+        -unless performed_tasks.blank?
+          .accordion-group
+            -performed_tasks.each do |task|
+              .accordion-heading
+                %a(class="accordion-toggle" data-toggle="collapse" data-parent="#tasks" href="#task-#{task.id}")
+                  = task.created_at
+              .accordion-body.collapse.in{id: "task-#{task.id}"}
+                =haml :"repositories/_task.html", :locals => {:task => task}
 
 %ul.nav.nav-tabs
   = yield_content :tab_nav
