@@ -11,7 +11,8 @@
 %h1
   =@repository.name
 
-Git Repository
+%h2
+  Git Repository
 %a(href="#{@repository.uri}")
   =@repository.uri
 
@@ -23,15 +24,21 @@ Git Repository
   %a(href="#{@repository.coverage_path}")
     coverage
 
-%form(action="/repositories/#{@repository.id}/scripts" method="post" name="create-script-form")
-  .field
-    %label
-      Command
-    %textarea(name='script[command]')
-  .field.buttons
-    %input(type='submit' value='Add script')
+%form(action="/repositories/#{@repository.id}/scripts" method="post" name="create-script-form" class="well")
+  %label
+    Name
+  %input(type='text' name='script[name]')
 
-%ul
+  %label
+    Description
+  %textarea(name='script[description]' rows="5" class="span4")
+  %label
+    Command
+  %textarea(name='script[command]' class="span4")
+  .field.buttons
+    %input(type='submit' value='Add script' class="btn")
+
+%ul(class="nav nav-tabs")
   -@repository.scripts.order(:created_at.desc).each do |script|
     %li
       =h script.command
