@@ -6,6 +6,7 @@ Bundler.require
 
 require 'open3'
 require 'sinatra/namespace'
+require 'sinatra/contrib'
 
 require 'gitci/config'
 require 'gitci/helpers'

@@ -3,6 +3,8 @@ class Script
   include Mongoid::Timestamps
 
   field :command, :type => String
+  field :name, :type => String
+  field :description, :type => String
 
   belongs_to :repository
 

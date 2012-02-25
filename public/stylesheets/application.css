@@ -1,0 +1,30 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+  font-family: "Ubuntu Beta",UbuntuBeta,Ubuntu,Helvetica,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.dialog {
+  display: none;
+}
+
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+#repositories {
+}
+
+#repositories .repository {
+
+}
+
+#repositories .repository.fail {
+  border: 1px solid #FEE;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+}
+
+#repositories .repository.ok {
+  border: 1px solid #EFE;
+  border: 1px solid rgba(0, 255, 0, 0.5);
+}

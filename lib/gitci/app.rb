@@ -1,6 +1,8 @@
+
 module Gitci
   class App < Sinatra::Base
     include Gitci::Helpers::Global
+    helpers Sinatra::ContentFor
 
     if Gitci.config.enable_auth
       use Rack::Auth::Basic, "Restricted Area" do |username, password|
