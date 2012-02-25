@@ -1,6 +1,6 @@
 .accordion_group
   .accordion_heading
-    %a(href="#collapse" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_script")
+    %a(href="#collapse#{count}" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_script")
       %i(class="icon-arrow-down")
       %b
         Commit:
@@ -16,7 +16,7 @@
       -if task.performed
         == Finished on #{(task.finished_at||task.updated_at)}
 
-  %div(id ="collapse" class="accordion-body collapse in")
+  %div(id="collapse#{count}" class="collapse")
     .accordion-inner
       -color = task.failed ? '#FF7E7E' : '#bbb'
       %pre{:style => "background: #{color}"}
