@@ -28,3 +28,29 @@ body {
   border: 1px solid #EFE;
   border: 1px solid rgba(0, 255, 0, 0.5);
 }
+
+.navbar .brand {
+  position: relative;
+}
+
+.brand .plus {
+  position: absolute;
+  font-size: 70%;
+  margin: auto;
+  top: 0%;
+  left: 0.70em;
+  color: #008000;
+}
+
+.brand .minus {
+  position: absolute;
+  font-size: 70%;
+  top: 50%;
+  left: 0.8em;
+  color: #ff0000;
+}
+
+.brand .integration {
+  position: relative;
+  color: #5FAFE9;
+}

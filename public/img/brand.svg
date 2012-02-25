@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="gitci-brand.svg"
+   inkscape:export-filename="/home/kuadrosx/Documents/gitci-brand.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3921">
+      <stop
+         id="stop3923"
+         offset="0"
+         style="stop-color:#2f2f2f;stop-opacity:0.94117647" />
+      <stop
+         style="stop-color:#1a1a1a;stop-opacity:1"
+         offset="0.32595089"
+         id="stop3925" />
+      <stop
+         style="stop-color:#1a1a1a;stop-opacity:1"
+         offset="0.7469756"
+         id="stop3927" />
+      <stop
+         id="stop3929"
+         offset="1"
+         style="stop-color:#2f2f2f;stop-opacity:0.94117647" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3911">
+      <stop
+         id="stop3913"
+         offset="0"
+         style="stop-color:#2f2f2f;stop-opacity:0.94117647" />
+      <stop
+         style="stop-color:#1a1a1a;stop-opacity:1"
+         offset="0.7816546"
+         id="stop3915" />
+      <stop
+         id="stop3917"
+         offset="1"
+         style="stop-color:#2f2f2f;stop-opacity:0.94117647" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3813">
+      <stop
+         style="stop-color:#2f2f2f;stop-opacity:0.94117647"
+         offset="0"
+         id="stop3815" />
+      <stop
+         id="stop3919"
+         offset="0.4034836"
+         style="stop-color:#242424;stop-opacity:0.96862745;" />
+      <stop
+         id="stop3821"
+         offset="0.8069672"
+         style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop
+         style="stop-color:#2f2f2f;stop-opacity:0.94117647"
+         offset="1"
+         id="stop3817" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3813"
+       id="linearGradient3898"
+       gradientUnits="userSpaceOnUse"
+       x1="-442.32144"
+       y1="566.94214"
+       x2="-442.5"
+       y2="587.92426" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3921"
+       id="linearGradient3909"
+       gradientUnits="userSpaceOnUse"
+       x1="-442.05359"
+       y1="565.87073"
+       x2="-442.32144"
+       y2="588.19208" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.2"
+     inkscape:cx="-419.42784"
+     inkscape:cy="465.98126"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1362"
+     inkscape:window-height="671"
+     inkscape:window-x="0"
+     inkscape:window-y="35"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       orientation="0,1"
+       position="-494.72221,440.93159"
+       id="guide3177" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="-550.71429"
+       y="626.64789"
+       id="text2995"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2997"
+         x="-550.71429"
+         y="626.64789" /></text>
+    <g
+       id="g3933"
+       inkscape:export-filename="/home/kuadrosx/Projects/ricodigo/gitci/public/img/favicon.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/kuadrosx/Projects/ricodigo/gitci/public/img/favicon.png"
+         id="g3900">
+        <rect
+           style="fill:url(#linearGradient3909);fill-opacity:1;stroke:none"
+           id="rect3788"
+           width="16"
+           height="16"
+           x="-450.52805"
+           y="569.92426"
+           ry="2.404146" />
+        <text
+           xml:space="preserve"
+           style="font-size:10.33674526px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="-296.51477"
+           y="870.86932"
+           id="text2991"
+           sodipodi:linespacing="125%"
+           transform="scale(1.4911326,0.67063116)"><tspan
+             sodipodi:role="line"
+             id="tspan2993"
+             x="-296.51477"
+             y="870.86932">-</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:6.93214369px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#00ff00;fill-opacity:1;stroke:none;font-family:Sans"
+           x="-442.14285"
+           y="576.61792"
+           id="text2999"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3001"
+             x="-442.14285"
+             y="576.61792">+</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:13.86428738px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#00ccff;fill-opacity:1;stroke:none;font-family:Sans"
+           x="-448.3201"
+           y="581.69836"
+           id="text3003"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3005"
+             x="-448.3201"
+             y="581.69836">∫</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
