@@ -8,3 +8,11 @@
   %pre{:style => "background: #{color}"}
     -if task.failed && !task.stderr.blank?
       =task.stderr
+
+  -if !task.runtime_error.blank?
+    %details
+      %summary
+        Runtime error:
+        = task.runtime_error
+      %pre
+        = task.runtime_backtrace
