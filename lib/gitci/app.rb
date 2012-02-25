@@ -34,6 +34,11 @@ module Gitci
       haml :'welcome/index.html'
     end
 
+    get '/respositories/new' do
+      @repository = Repository.new
+      haml :'repositories/new.html'
+    end
+
     get '/repositories' do
       @repositories = Repository.all.order(:created_at.desc)
       haml :'repositories/index.html'
