@@ -35,11 +35,13 @@ class BuildTask
       self.running = true
       self.save(:validate => false)
 
-      if has_command?
-        fetch_repository
-        run_script
-      else
-        fetch_repository
+      Timeout.timeout(10*60) do
+        if has_command?
+          fetch_repository
+          run_script
+        else
+          fetch_repository
+        end
       end
     rescue => e
       self.runtime_error = e.message
