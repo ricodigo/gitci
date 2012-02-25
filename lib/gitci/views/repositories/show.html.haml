@@ -8,11 +8,13 @@
     %a(href="/repositories/#{@repository.id}")
       Repository
       =@repository.name
+
 %h1
   =@repository.name
 
-%h2
+%h3
   Git Repository
+
 %a(href="#{@repository.uri}")
   =@repository.uri
 
@@ -24,23 +26,44 @@
   %a(href="#{@repository.coverage_path}")
     coverage
 
-%form(action="/repositories/#{@repository.id}/scripts" method="post" name="create-script-form" class="well")
-  %label
-    Name
-  %input(type='text' name='script[name]')
+#newScriptFrom.modal.fade.hide{style: "display:none"}
+  %form(action="/repositories/#{@repository.id}/scripts" method="post" name="create-script-form" class="well")
+    .modal-header
+      %a.close(data-dismiss="modal")
+        ×
+      %h3
+        Add new Script
 
-  %label
-    Description
-  %textarea(name='script[description]' rows="5" class="span4")
-  %label
-    Command
-  %textarea(name='script[command]' class="span4")
-  .field.buttons
-    %input(type='submit' value='Add script' class="btn")
+    .modal-body
 
-%ul(id="tab_script" class="nav nav-tabs")
-  -@repository.scripts.order(:created_at.desc).each do |script|
-    %li
+      %label
+        Name
+      %input(type='text' name='script[name]')
+
+      %label
+        Description
+      %textarea(name='script[description]' rows="5" class="span4")
+      %label
+        Command
+      %textarea(name='script[command]' class="span4")
+    .modal-footer
+      %input(type='submit' value='Add script' class="btn btn-primary")
+      %a.btn(href="#")
+        Close
+
+%a.btn(href="#newScriptFrom" data-toggle="modal" data-target="#newScriptFrom" )
+  Add New Script
+
+-count = 0
+-@repository.scripts.order(:created_at.desc).each do |script|
+  -content_for :tab_nav do
+    %li{class: count == 0 ? "active" : ""}
+      %a(href="##{script.id}" data-toggle="tab")
+        &= script.name || "unamed #{count}"
+        -count += 1
+
+  -content_for :tab_content do
+    .tab-pane{id: script.id}
       =h script.command
       %button(href="/repositories/#{@repository.id}/scripts/#{script.id}/run" class="btn btn-success")
         run
@@ -54,3 +77,9 @@
         -script.build_tasks.where(:performed => true).order(:created_at.desc).limit(20).each do |task|
           %li
             =haml :"repositories/_task.html", :locals => {:task => task}
+
+%ul.nav.nav-tabs
+  = yield_content :tab_nav
+.tab-content
+  = yield_content :tab_content
+
