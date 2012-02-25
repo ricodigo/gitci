@@ -1,26 +1,30 @@
-%form(action="/repositories" method="post" name="edit-repository")
-  .field
-    %label
-      Name
-    %input(type='text' name='repository[name]')
-  .field
-    %label
-      URI
-    %input(type='text' name='repository[uri]')
-  .field
-    %label
-      Feed URL (rss, atom)
-    %input(type='text' name='repository[feed_url]')
-  .field
-    %label
-      Gitci Ssh Key
-    %pre{:style => "width: 800px; height: 40px; overflow: scroll"}
-      &=File.read("#{Dir.home}/.ssh/id_rsa.pub")
+%form(action="/repositories" method="post" name="edit-repository" class="well")
+  %label
+    Name
+  %input(type='text' name='repository[name]')
 
-  .field
-    %label
-      Script
-    %textarea(name='script')
+  %label
+    URI
+  %input(type='text' name='repository[uri]')
+  %p(class="help-block")
+    Example: git@github.com:ricodigo/gitci.git
+
+
+  %label
+    Feed URL (rss, atom)
+  %input(type='text' name='repository[feed_url]')
+  %p(class="help-block")
+    Example: https://github.com/ricodigo/gitci/commits/master.atom
+
+  %label
+    Gitci Ssh Key
+  %textarea(rows="10" class="span5")
+    &=File.read("#{Dir.home}/.ssh/id_rsa.pub")
+
+
+  %label
+    Script
+  %textarea.span3(name='script' rows="3" class="span5" placeholder="Write new script")
 
   .field.buttons
-    %input(type='submit' value='Add')
+    %input(type='submit' value='Add' class="btn")
