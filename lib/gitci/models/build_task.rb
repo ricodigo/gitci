@@ -84,7 +84,10 @@ class BuildTask
       self.exit_code = status.to_i
       if self.exit_code != 0
         self.failed = true
+        self.repository.last_failed_ref = self.git_ref||"master"
       end
+      self.repository.current_ref = self.git_ref||"master"
+      self.repository.current_commit_id = self.commit_id
 
       begin
         old_name = File.expand_path("./coverage")
@@ -94,6 +97,8 @@ class BuildTask
           self.repository.coverage_path = "/#{self.repository.normalized_name}-coverage/index.html"
           File.symlink(old_name, new_name)
 
+          self.repository.save(:validate => false)
+        else
           self.repository.save(:validate => false)
         end
       rescue => e

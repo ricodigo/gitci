@@ -6,5 +6,5 @@ class Script
 
   belongs_to :repository
 
-  has_many :build_tasks
+  has_many :build_tasks, :validate => false
 end
