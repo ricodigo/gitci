@@ -34,8 +34,7 @@ module Gitci
       haml :'welcome/index.html'
     end
 
-    get '/respositories/new' do
-      @repository = Repository.new
+    get '/repositories/new' do
       haml :'repositories/new.html'
     end
 

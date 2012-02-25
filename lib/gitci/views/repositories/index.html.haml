@@ -1,11 +1,20 @@
 %h1
   Repositories
 
-%ul
-  -@repositories.each do |repo|
-    %li
-      %a(href="/repositories/#{repo.id}")
-        =repo.name
-      -last_task = repo.build_tasks.order(:updated_at.desc).first
-      -if last_task
-        =haml :"repositories/_task.html", :locals => {:task => last_task}, layout: false
+#repositories
+  -count = 0
+  -@repositories.each_slice(3) do |row|
+    .row-fluid
+      -row.each do |repo|
+        - failed = repo.last_failed_ref == repo.current_ref
+        .repository.well.span4{ class: (failed ? "fail" : "ok") }
+          %h2
+            %a(href="/repositories/#{repo.id}")
+              =repo.name
+
+            %span.label{ class: failed ? "label-important" : "label-success" }
+              = failed ? "FAILED" : "OK"
+
+          %p
+            %a.btn(href="/repositories/#{repo.id}")
+              View details »
