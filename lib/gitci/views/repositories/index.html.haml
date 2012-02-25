@@ -8,4 +8,4 @@
         =repo.name
       -last_task = repo.build_tasks.order(:updated_at.desc).first
       -if last_task
-        =haml :"repositories/_task.html", :locals => {:task => last_task}
+        =haml :"repositories/_task.html", :locals => {:task => last_task}, layout: false

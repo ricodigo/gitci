@@ -1,6 +1,8 @@
-%h1
-  Add Repository
 
-=haml :"repositories/_form.html"
+-if @repositories.empty?
+  %h1
+    Add Your First Repository
 
-=haml :"repositories/index.html"
+  =haml :"repositories/_form.html", layout: false
+-else
+  =haml :"repositories/index.html", layout: false
