@@ -17,9 +17,13 @@ class Repository
   field :has_coverage, :type => Boolean, :default => false
   field :coverage_path, :type => String
 
+  field :last_failed_ref, :type => String
+  field :current_ref, :type => String
+  field :current_commit_id, :type => String
+
   validates_presence_of :uri, :name
-  has_many :scripts
-  has_many :build_tasks
+  has_many :scripts, :validate => false
+  has_many :build_tasks, :validate => false
 
   def normalized_name
     name.parameterize("-")
