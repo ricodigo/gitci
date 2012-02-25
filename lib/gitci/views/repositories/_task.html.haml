@@ -1,16 +1,5 @@
 
 .task
-  %b
-    Commit:
-  &=task.commit_id
-
-  %b
-    Status:
-  - if task.running
-    ="Running"
-  -else
-    = task.failed ? "FAILED" : "OK"
-
   -if task.performed
     == Finished on #{(task.finished_at||task.updated_at)}
 
