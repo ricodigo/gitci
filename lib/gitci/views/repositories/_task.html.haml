@@ -1,8 +1,5 @@
 
 .task
-  -if task.performed
-    == Finished on #{(task.finished_at||task.updated_at)}
-
   -color = task.failed ? '#FF7E7E' : '#bbb'
   %pre{:style => "background: #{color}"}
     -if !task.stdout.blank?

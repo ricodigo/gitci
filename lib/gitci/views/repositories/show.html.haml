@@ -107,6 +107,8 @@
                     %strong
                       = task.commit_id || "unknow"
                     .pull-right
+                      -if task.performed
+                        == Finished on #{(task.finished_at||task.updated_at)}
                       -if task.running
                         %span.label.info
                           RUNNING

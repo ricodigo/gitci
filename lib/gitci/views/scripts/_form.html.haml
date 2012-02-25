@@ -6,7 +6,10 @@
 
 %label
   Description
-%textarea(name='script[description]' rows="5" class="span4")
+%textarea{name: 'script[description]', rows: "5", class: "span4"}
+  = script.nil? ? "" : script.description
+
 %label
   Command
-%textarea(name='script[command]' class="span4")
+%textarea{name: 'script[command]', class: "span4"}
+  = script.nil? ? "" : script.command
