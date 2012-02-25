@@ -36,12 +36,22 @@
                 %a(href="/")
                   Home
               %li
-                %a.add_repository(href="/repositories/new")
+                %a(href="/repositories/new" data-target="#newRepository" data-toggle="modal")
                   Add Repository
 
               %li
                 %a(href="/")
                   Contact
+
+    #newRepository.modal.fade.hide{style: "display:none"}
+      .modal-header
+        %a.close(data-dismiss="modal")
+          ×
+        %h3
+          Add Repository
+
+      .modal-body
+        = haml :"repositories/_form.html", layout: false
 
     .container-fluid
       .row-fluid
