@@ -61,30 +61,34 @@
         Delete
       %a(href="/repositories/#{@repository.id}/scripts/#{script.id}/edit" class="btn")
         Edit
-      -running_tasks = script.build_tasks.where(:running => true).order(:created_at.desc).limit(20)
-      -performed_tasks = script.build_tasks.where(:performed => true).order(:created_at.desc).limit(20)
-      -if running_tasks.blank? && performed_tasks.blank?
+      -tasks = script.build_tasks.where.order(:created_at.desc).limit(20)
+      -if tasks.blank?
         .alert.alert-info
           This script have been performed
       -else
-        -unless running_tasks.blank?
-          %div(class="accordion" id="tasks")
-            .accordion-group
-              -running_tasks.each do |task|
+        -unless tasks.blank?
+          #accordion-tasks.accordion
+            -first = true
+            -tasks.each do |task|
+              .accordion-group
                 .accordion-heading
-                  %a(class="accordion-toggle" data-toggle="collapse" data-parent="#tasks" href="#task-#{task.id}")
+                  %a.accordion-toggle(data-parent="#accordion-tasks" data-toggle="collapse" href="#task#{task.id}")
+                    -if task.running
+                      %span.label.info
+                        RUNNING
+                    -else
+                      -if task.failed
+                        %span.label.label-important
+                          FAILED
+                      -else
+                        %span.label.label-success
+                          OK
                     = task.created_at
 
-                .accordion-body.collapse.in{id: "task-#{task.id}"}
-                  = haml :"repositories/_task.html", :locals => {:task => task}
-        -unless performed_tasks.blank?
-          .accordion-group
-            -performed_tasks.each do |task|
-              .accordion-heading
-                %a(class="accordion-toggle" data-toggle="collapse" data-parent="#tasks" href="#task-#{task.id}")
-                  = task.created_at
-              .accordion-body.collapse.in{id: "task-#{task.id}"}
-                =haml :"repositories/_task.html", :locals => {:task => task}
+                .accordion-body.collapse{id: "task#{task.id}", class: first && "in"}
+                  .accordion-inner
+                    = haml :"repositories/_task.html", :locals => {:task => task}, layout: false
+              -first = false
 
 %ul.nav.nav-tabs
   = yield_content :tab_nav
