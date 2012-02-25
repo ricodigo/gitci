@@ -64,9 +64,14 @@ class Repository
         next
       end
 
+      commit_id = nil
       if entry.title =~ /^Committed: (\S+)/
         commit_id = $1
+      elsif entry.id =~ /Commit\/(\S+)/
+        commit_id = $1
+      end
 
+      if commit_id.present?
         if BuildTask.where(:git_ref => commit_id).first
           next
         end
