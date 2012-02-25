@@ -5,6 +5,7 @@ require 'bundler/setup'
 Bundler.require
 
 require 'open3'
+require 'timeout'
 require 'sinatra/namespace'
 require 'sinatra/contrib'
 

@@ -13,6 +13,7 @@ gem "haml"
 gem "open4", "~> 1.3.0"
 gem "whenever"
 gem "feedzirra", :git => "git://github.com/pauldix/feedzirra.git"
+gem "syntaxer"
 
 
 group :development do
