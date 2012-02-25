@@ -69,17 +69,14 @@
         run
       %button(href="/repositories/#{@repository.id}/scripts/#{script.id}/delete" class="btn btn-danger")
         delete
-      %ul
+      %div(id="accordion_script" class="accordion")
         -script.build_tasks.where(:running => true).order(:created_at.desc).limit(20).each do |task|
-          %li
-            =haml :"repositories/_task.html", :locals => {:task => task}
+          =haml :"repositories/_task.html", :locals => {:task => task}
 
         -script.build_tasks.where(:performed => true).order(:created_at.desc).limit(20).each do |task|
-          %li
-            =haml :"repositories/_task.html", :locals => {:task => task}
+          =haml :"repositories/_task.html", :locals => {:task => task}
 
 %ul.nav.nav-tabs
   = yield_content :tab_nav
 .tab-content
   = yield_content :tab_content
-

@@ -1,30 +1,28 @@
-%b
-  Command:
-&=task.command
-%br
+.accordion_group
+  .accordion_heading
+    %a(href="#collapse" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_script")
+      %i(class="icon-arrow-down")
+      %b
+        Commit:
+      &=task.commit_id
 
-%b
-  Commit:
-&=task.commit_id
+      %b
+        Status:
+      - if task.running
+        ="Running"
+      -else
+        =task.failed ? "FAILED" : "OK"
 
-%b
-  Status:
--if task.running
-  ="Running"
--else
-  =task.failed ? "FAILED" : "OK"
+      -if task.performed
+        == Finished on #{(task.finished_at||task.updated_at)}
 
--if task.performed
-  == Finished on #{(task.finished_at||task.updated_at)}
+  %div(id ="collapse" class="accordion-body collapse in")
+    .accordion-inner
+      -color = task.failed ? '#FF7E7E' : '#bbb'
+      %pre{:style => "background: #{color}"}
+        -if !task.stdout.blank?
+          =task.stdout
 
-%br
-
--color = task.failed ? '#FF7E7E' : '#bbb'
-%pre{:style => "background: #{color}"}
-  -if !task.stdout.blank?
-    =task.stdout
-
-%pre{:style => "background: #{color}"}
-  -if task.failed && !task.stderr.blank?
-    =task.stderr
-%br
+      %pre{:style => "background: #{color}"}
+        -if task.failed && !task.stderr.blank?
+          =task.stderr
