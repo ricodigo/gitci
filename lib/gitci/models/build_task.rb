@@ -64,7 +64,7 @@ class BuildTask
     in_repo do
       reset_head
 
-      if File.exist?("mongoid_ext.gemspec")
+      if File.exist?("Gemfile")
         Open4::popen4("bundle install --deployment") do |pid, stdin, stdout, stderr|
           repository.bundle_output = stdout.read
           repository.has_gemfile = true
