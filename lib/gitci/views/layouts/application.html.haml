@@ -51,14 +51,20 @@
                   Contact
 
     #newRepository.modal.fade.hide{style: "display:none"}
-      .modal-header
-        %a.close(data-dismiss="modal")
-          ×
-        %h3
-          Add Repository
+      %form(action="/repositories" method="post" name="edit-repository" class="well")
+        .modal-header
+          %a.close(data-dismiss="modal")
+            ×
+          %h3
+            Add Repository
 
-      .modal-body
-        = haml :"repositories/_form.html", layout: false
+        .modal-body
+          = haml :"repositories/_form.html", layout: false
+
+        .modal-footer
+          %input(type='submit' value='Add' class="btn btn-primary")
+          %a.btn(href="#" data-dismiss="modal")
+            Close
 
     .container-fluid
       .row-fluid

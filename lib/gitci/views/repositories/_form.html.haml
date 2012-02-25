@@ -1,30 +1,26 @@
-%form(action="/repositories" method="post" name="edit-repository" class="well")
-  %label
-    Name
-  %input(type='text' name='repository[name]')
+%label
+  Name
+%input(type='text' name='repository[name]')
 
-  %label
-    URI
-  %input(type='text' name='repository[uri]')
-  %p(class="help-block")
-    Example: git@github.com:ricodigo/gitci.git
-
-
-  %label
-    Feed URL (rss, atom)
-  %input(type='text' name='repository[feed_url]')
-  %p(class="help-block")
-    Example: https://github.com/ricodigo/gitci/commits/master.atom
-
-  %label
-    Gitci Ssh Key
-  %textarea(rows="10" class="span5")
-    &=File.read("#{Dir.home}/.ssh/id_rsa.pub")
+%label
+  URI
+%input(type='text' name='repository[uri]')
+%p(class="help-block")
+  Example: git@github.com:ricodigo/gitci.git
 
 
-  %label
-    Script
-  %textarea.span3(name='script' rows="3" class="span5" placeholder="Write new script")
+%label
+  Feed URL (rss, atom)
+%input(type='text' name='repository[feed_url]')
+%p(class="help-block")
+  Example: https://github.com/ricodigo/gitci/commits/master.atom
 
-  .form-actions
-    %input(type='submit' value='Add' class="btn btn-primary")
+%label
+  Gitci Ssh Key
+%textarea(rows="10" class="span5")
+  &=File.read("#{Dir.home}/.ssh/id_rsa.pub")
+
+
+%label
+  Script
+%textarea.span3(name='script' rows="3" class="span5" placeholder="Write new script")

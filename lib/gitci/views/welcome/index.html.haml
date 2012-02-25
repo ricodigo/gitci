@@ -3,6 +3,9 @@
   %h1
     Add Your First Repository
 
-  =haml :"repositories/_form.html", layout: false
+  %form(action="/repositories" method="post" name="edit-repository" class="well")
+    =haml :"repositories/_form.html", layout: false
+    .form-actions
+    %input(type='submit' value='Add' class="btn btn-primary")
 -else
   =haml :"repositories/index.html", layout: false

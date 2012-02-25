@@ -11,4 +11,9 @@
 %h1
   New respository
 
-= haml :"repositories/_form.html", layout: false
+%form(action="/repositories" method="post" name="edit-repository" class="well")
+
+  = haml :"repositories/_form.html", layout: false
+
+  .form-actions
+    %input(type='submit' value='Add' class="btn btn-primary")
