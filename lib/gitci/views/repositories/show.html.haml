@@ -14,7 +14,7 @@
 
 .row-fluid
   .span4
-    %strong
+    %h4
       Git Repository
 
     %a(href="#{@repository.uri}")
@@ -25,15 +25,29 @@
       .alert.alert-error
         Fetching repository failed
   .span4
-    %strong
+    %h4
       Status
-    = @repository.last_failed_ref
-    = @repository.current_ref
-    -if @repository.has_coverage
-      %a(href="#{@repository.coverage_path}")
-        coverage
-  .span4
+      -failed = @repository.last_failed_ref == @repository.current_ref
+      %span.pull-right.label{ class: failed ? "label-important" : "label-success" }
+        = failed ? "FAILED" : "OK"
+
+    Current ref:
     %strong
+      = @repository.current_ref
+
+    %br
+    Last failed ref:
+    %strong
+      = @repository.last_failed_ref
+
+    -if @repository.has_coverage
+      %br
+      Coverage:
+      %strong
+        %a(href="#{@repository.coverage_path}")
+          url
+  .span4
+    %h4
       Feed url
     = @repository.feed_url
     = @repository.last_feed_at
