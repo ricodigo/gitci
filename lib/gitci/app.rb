@@ -99,7 +99,7 @@ module Gitci
       @repository = Repository.find(params[:repository_id])
       script = @repository.scripts.find(params[:id])
 
-      BuildTask.create(:repository => @repository, :script => script)
+      BuildTask.create!(:repository => @repository, :script => script)
 
       redirect "/repositories/#{@repository.id}"
     end
