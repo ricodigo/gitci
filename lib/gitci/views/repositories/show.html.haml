@@ -112,6 +112,9 @@
                       -if task.running
                         %span.label.info
                           RUNNING
+                      -elsif task.commit_id.blank?
+                        %span.label.info
+                          PENDING
                       -else
                         -if task.failed
                           %span.label.label-important
