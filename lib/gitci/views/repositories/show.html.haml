@@ -105,7 +105,7 @@
                   %a.accordion-toggle(data-parent="#accordion-tasks" data-toggle="collapse" href="#task#{task.id}")
                     Commit:
                     %strong
-                      = task.commit_id || "unknow"
+                      = task.commit_id || "unknown"
                     .pull-right
                       -if task.performed
                         == Finished on #{(task.finished_at||task.updated_at)}
